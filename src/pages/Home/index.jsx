@@ -5,6 +5,7 @@ import {
   TablePagination, TableRow, Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import del from "../../assets/delete.svg";
 import edit from "../../assets/edit.svg";
 import logout from "../../assets/logout.svg";
@@ -30,6 +31,8 @@ export default function Home() {
   const [excluir, setExcluir] = useState(false);
   const [dados, setDados] = useState();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     contacts();
   }, [criar, editar, excluir]);
@@ -42,6 +45,12 @@ export default function Home() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  const handleLogoff = async () => {
+    localStorage.removeItem("token");
+
+    navigate("/");
+  }
 
   const contacts = async () => {
     const token = localStorage.getItem("token");
@@ -79,7 +88,7 @@ export default function Home() {
         }}>
           KONTACTS
         </Typography>
-        <img src={logout} alt="Logout" />
+        <img onClick={handleLogoff} src={logout} alt="Logout" />
       </header>
       <div className='container-btn'>
         <Button
