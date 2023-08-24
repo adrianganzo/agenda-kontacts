@@ -137,7 +137,6 @@ Esse endpoint permite que você faça a atualização de um contato, para atuali
     - useState
     - useEffect
     - useNavigate
-    - hooks personalizados
 - Axios 
 - HTML e CSS
 - Material UI
